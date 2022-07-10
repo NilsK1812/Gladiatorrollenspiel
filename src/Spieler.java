@@ -3,6 +3,6 @@ public class Spieler extends Gladiator{
     private int coins;
 
     public void informationen(){
-        System.out.println("Name: " + getName());
+        System.out.print("Name: " + getName());
     }
 }
