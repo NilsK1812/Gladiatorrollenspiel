@@ -16,15 +16,22 @@ public class Menus {
     }
 
     private void create_menu(){
-        current_line = 1;
+        current_line = 0;
         index = longest_word() + 5;
         start_and_end();
         System.out.print("\n");
         for (String x : sections) {
-            System.out.print(MessageFormat.format("# {0}.{1} ", current_line,x));
-            for(int y = (x.length() + 6); y <= index; y++)
-                System.out.print(" ");
-            System.out.println("#");
+            if(current_line == 0) {
+                System.out.print(MessageFormat.format("# {0} ", x));
+                set_last_hashtag(x, 4);
+                start_and_end();
+                System.out.print("\n");
+            }
+            else {
+                System.out.print(MessageFormat.format("# {0}.{1} ", current_line, x));
+                set_last_hashtag(x, 6);
+            }
+
             current_line++;
         }
         start_and_end();
@@ -45,5 +52,11 @@ public class Menus {
         }
 
         return longest_index;
+    }
+
+    private void set_last_hashtag(String current_word, int zusatz){
+        for(int y = (current_word.length() + zusatz); y <= index; y++)
+            System.out.print(" ");
+        System.out.println("#");
     }
 }
